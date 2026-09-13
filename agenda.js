@@ -75,6 +75,12 @@ formulario.addEventListener("submit", (evento) => {
     data: document.getElementById("data").value,
     hora: document.getElementById("hora").value,
   };
+  const quando = new Date(`${nova.data}T${nova.hora}`);
+  if (quando < new Date()) {
+    const dataBr = nova.data.split("-").reverse().join("/");
+    mensagem.textContent = `Data passada: ${dataBr} às ${nova.hora} já aconteceu. Escolha uma data futura.`;
+    return;
+  }
 
   const consultas = carregar();
   if (horarioOcupado(consultas, nova)) {
