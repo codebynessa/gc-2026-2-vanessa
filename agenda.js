@@ -77,10 +77,9 @@ formulario.addEventListener("submit", (evento) => {
   };
 
   const consultas = carregar();
-
   if (horarioOcupado(consultas, nova)) {
-    mensagem.textContent = "erro";
-    formulario.reset();
+    const dataBr = nova.data.split("-").reverse().join("/");
+    mensagem.textContent = `Horário indisponível: ${nova.profissional} já tem consulta em ${dataBr} às ${nova.hora}. Escolha outro horário.`;
     return;
   }
 
